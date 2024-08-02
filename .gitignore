@@ -1,0 +1,4 @@
+# ignore folders
+.ipynb_checkpoints/
+.virtual_documents/
+_build/

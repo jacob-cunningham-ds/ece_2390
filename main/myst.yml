@@ -1,0 +1,33 @@
+version: 1
+project:
+  toc:
+    - file: index.md
+    - file: syllabus.md
+    - title: Notes
+      children:
+        - file: notes/01_lecture.md
+    - title: Homeworks
+      children:
+        - file: homework/01_hw.ipynb
+  license: CC-BY-4.0
+  open_access: true
+  authors:
+  - name: Jacob Cunningham
+    affiliations:
+      - id: pitt
+        institution: University of Pittsburgh
+        department: Mechanical Engineering
+    email: jjc132@pitt.edu
+    corresponding: true
+    github: jacob-cunningham-ds
+  subject: Image Processing and Computer Vision
+  jupyter: true
+  github: https://github.com/jacob-cunningham-ds/ece_2390
+
+
+site:
+  template: book-theme
+  options:
+    logo: assets/favicon_96.png
+    logo_text: ECE 2390
+    favicon: assets/favicon_32.png
