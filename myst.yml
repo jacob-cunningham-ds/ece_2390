@@ -9,6 +9,9 @@ project:
     - title: Homeworks
       children:
         - file: homework/01_hw.ipynb
+    - title: Project
+      children:
+        - file: project/01_description.md
   license: CC-BY-4.0
   open_access: true
   authors:
