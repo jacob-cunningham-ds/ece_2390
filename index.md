@@ -2,6 +2,10 @@
 title: Home
 ---
 
+:::{important}
+This website was created by the aforementioned author. The website content was adapted from the original content creator, Dr. Theodore Huppert.
+:::
+
 ## Summary of course
 
 This course introduces concepts of image processing including image filtering and enhancement, segmentation techniques, feature extraction, and object recognition and tracking. Material will be presented in a series of lectures and through examples in Python notebooks. OpenCV, Python, and GitHub will be used for most lectures and homework assignments. By the end of the course you should be able to:

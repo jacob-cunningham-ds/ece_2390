@@ -5,7 +5,7 @@ project:
     - file: syllabus.md
     - title: Notes
       children:
-        - file: notes/01_lecture.md
+        - file: notes/01_lecture.ipynb
     - title: Homeworks
       children:
         - file: homework/01_hw.ipynb
@@ -34,3 +34,4 @@ site:
     logo: assets/favicon_96.png
     logo_text: ECE 2390
     favicon: assets/favicon_32.png
+    outline_maxdepth: 2
