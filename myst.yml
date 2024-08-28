@@ -8,7 +8,7 @@ project:
         - file: notes/01_lecture.ipynb
     - title: Homeworks
       children:
-        - file: homework/01_hw.ipynb
+        - file: homework/00_hw/Homework_0.ipynb
     - title: Project
       children:
         - file: project/01_description.md
@@ -34,4 +34,4 @@ site:
     logo: assets/favicon_96.png
     logo_text: ECE 2390
     favicon: assets/favicon_32.png
-    outline_maxdepth: 2
+    outline_maxdepth: 1
