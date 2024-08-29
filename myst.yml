@@ -12,6 +12,7 @@ project:
     - title: Project
       children:
         - file: project/01_description.md
+    - file: functions.md
   license: CC-BY-4.0
   open_access: true
   authors:
