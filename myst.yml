@@ -6,7 +6,7 @@ project:
     - title: Notes
       children:
         - file: notes/01_lecture.ipynb
-    - title: Homeworks
+    - title: Homework
       children:
         - file: homework/00_hw/Homework_0.ipynb
     - title: Project
@@ -36,3 +36,15 @@ site:
     logo_text: ECE 2390
     favicon: assets/favicon_32.png
     outline_maxdepth: 1
+  nav:
+    - title: References
+      children:
+      - title: OpenCV
+        url: https://opencv.org/
+      - title: NumPy
+        url: https://numpy.org/
+      - title: Matplotlib
+        url: https://matplotlib.org/
+  actions:
+    - title: Course GitHub
+      url: https://github.com/SSOE-ECE1390
