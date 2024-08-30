@@ -14,7 +14,17 @@ Loads an image from a file.
 The function imread loads an image from the specified file and returns it. If the image cannot be read (because of missing file, improper permissions, unsupported or invalid format), the function returns an empty matrix.
 
 :::{code} python
-:caption: `imread` Example
+:caption: `imread` syntax
+cv2.imread(filename, flags)
+:::
+
+|Parameter|Description|
+|--|--|
+|filename| Name of file to be loaded|
+|flags|Takes values of cv2.IMREAD_MODE|
+
+:::{code} python
+:caption: `imread` example
 # read in a BGR image
 img = cv2.imread(os.path.relpath('assets/example.jpg'), cv2.IMREAD_COLOR)
 
@@ -35,7 +45,19 @@ Display data as an image, i.e., on a 2D regular raster.
 The input may either be actual RGB(A) data, or 2D scalar data, which will be rendered as a pseudocolor image. For displaying a grayscale image, set up the colormapping using the parameters `cmap='gray', vmin=0, vmax=255`.
 
 :::{code} python
-:caption: `imshow` Example
+:caption: `imshow` syntax
+plt.imshow(img, cmap, vmin, vmax)
+:::
+
+|Paremeter|Description|
+|--|--|
+|img|The image data array|
+|cmap|The colormap; parameter is ignored if img is RGB(A)|
+|vmin|Minimum of the colormap|
+|vmax|Maximum of the colormap|
+
+:::{code} python
+:caption: `imshow` example
 # create a subplot of a RGB(A) image and grayscale image
 plt.figure()
 plt.subplot(121); plt.imshow(img); plt.title('RGB(A) Image')
@@ -49,14 +71,26 @@ plt.show()
 (card-cvtColor)=
 ::::{card}
 :header: cvtColor
-:footer: [Documentation](https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html#ga397ae87e1288a81d2363b61574eb8cab)
+:footer: [Documentation](https://docs.opencv.org/4.x/d8/d01/group__imgproc__color__conversions.html#gaf86c09fe702ed037c03c2bc603ceab14)
 
 Converts an image from one color space to another.
 
 The function converts an input image from one color space to another. In case of a transformation to-from RGB color space, the order of the channels should be specified explicitly (RGB or BGR). Note that the default color format in OpenCV is often referred to as RGB but it is actually BGR (the bytes are reversed). So the first byte in a standard (24-bit) color image will be an 8-bit Blue component, the second byte will be Green, and the third byte will be Red. The fourth, fifth, and sixth bytes would then be the second pixel (Blue, then Green, then Red), and so on.
 
 :::{code} python
-:caption: `cvtColor` Example
+:caption: `cvtColor` syntax
+cv2.cvtColor(src, dst, code, dstnCn = 0)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| input image|
+|dst| output image of the same size and depth as src|
+|code| color space conversion code|
+|dstCn| number of channles in the destination image|
+
+:::{code} python
+:caption: `cvtColor` example
 # convert BGR to RGB
 cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -75,7 +109,16 @@ cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 Divides a multi-channel array into several single-channel arrays.
 
 :::{code} python
-:caption: `split` Example
+:caption: `split` syntax
+cv2.split(src)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| input image|
+
+:::{code} python
+:caption: `split` example
 # split the image into blue, green, and red components
 b, g, r = cv2.split(img)
 :::
@@ -169,6 +212,21 @@ img_flipped_both = cv2.flip(img, -1)
 :::
 ::::
 
+## line
 
+(card-line)=
+::::{card}
+:header: line
+:footer: [Documentation](https://docs.opencv.org/4.x/d6/d6e/group__imgproc__draw.html#ga7078a9fae8c7e7d13d24dac2520ae4a2)
+
+Draws a line segment connecting two points.
+
+The function line draws the line segment between pt1 and pt2 points in the image. The line is clipped by the image boundaries. For non-antialiased lines with integer coordinates, the 8-connected or 4-connected Bresenham algorithm is used. Thick lines are drawn with rounding endings. Antialiased lines are drawn using Gaussian filtering.
+
+:::{code} pyton
+:caption: `line` Example
+test
+:::
+::::
 
 
