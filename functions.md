@@ -284,10 +284,127 @@ cv2.line(img, pt1, pt2, color, thickness, lineType)
 :caption: `line` example
 start = (200, 100)
 stop = (400, 100)
-yellow = (0, 255, 255)
+yellow = (0, 255, 255) # in BGR format
 
 cv2.line(imageLine, start, stop, yellow, thickness=5, lineType=cv2.LINE_AA)
 :::
 ::::
+
+## circle
+
+(card-circle)=
+::::{card}
+:header: circle
+:footer: [Documentation](https://docs.opencv.org/4.x/d6/d6e/group__imgproc__draw.html#gaf10604b069374903dbd0f0488cb43670)
+
+Draws a circle.
+
+:::{code} python
+:caption: `circle` syntax
+cv2.circle(img, center, radius, color, thickness, lineType)
+:::
+
+|Parameters|Description|
+|--|--|
+|img| Image on which we will draw the circle|
+|center| center of the circle|
+|radius| radius of the circle|
+|color| Color of the circle which will be drawn|
+|thickness| Integer specifying the thickness of the circle; default value is 1|
+|lineType| Type of line. Default is 8-connected line. Usually `cv2.LINE_AA` is used|
+
+:::{code} python
+:caption: `circle` example
+cv2.circle(img, (900, 500), 100, (0, 0, 255), thickness=5, lineType=cv2.LINE_AA)
+:::
+::::
+
+## rectangle
+
+(card-rectangle)=
+::::{card}
+:header: rectangle
+:footer: [Documentation](https://docs.opencv.org/4.x/d6/d6e/group__imgproc__draw.html#ga07d2f74cadcf8e305e810ce8eed13bc9)
+
+Draws a simple, thick, or filled up-right rectangle. 
+
+:::{code} python
+:caption: `rectangle` syntax
+cv2.rectangle(img, pt1, pt2, color, thickness, lineType)
+:::
+
+|Parameters|Description|
+|--|--|
+|img| Image on which we will draw the rectangle|
+|pt1| vertex of the rectangle|
+|pt2| vertex of the rectangle opposite of pt1|
+|color| Color of the rectangle which will be drawn|
+|thickness| Integer specifying the thickness of the rectangle; default value is 1|
+|lineType| Type of line. Default is 8-connected line. Usually `cv2.LINE_AA` is used|
+
+:::{code} python
+:caption: `rectangle` example
+cv2.rectangle(img, (500, 100), (700, 600), (255, 0, 255), thickness=5, lineType=cv2.LINE_AA)
+:::
+::::
+
+## putText
+
+(card-putText)=
+::::{card}
+:header: putText
+:footer: [Documentation](https://docs.opencv.org/4.x/d6/d6e/group__imgproc__draw.html#ga5126f47f883d730f633d74f07456c576)
+
+Draws a text string.
+
+:::{code} python
+:caption: `putText` syntax
+cv2.putText(img, text, org, fontFace, fontScale, color, thickness, lineType)
+:::
+
+|Parameters|Description|
+|--|--|
+|img| Image on which we will draw the text|
+|text| text string to be drawn|
+|org| bottom left corner of text|
+|fontFace| font type|
+|fontScale| size of font|
+|color| Color of the text which will be drawn|
+|thickness| Integer specifying the thickness of the text; default value is 1|
+|lineType| Type of line. Default is 8-connected line. Usually `cv2.LINE_AA` is used|
+
+:::{code} python
+:caption: `putText` example
+cv2.putText(img, 'Hello World!', (200, 700), cv2.FONT_HERSHEY_PLAIN, 2.3, (0, 255, 0), thickness=2, lineType=cv2.LINE_AA)
+:::
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
