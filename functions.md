@@ -129,12 +129,21 @@ b, g, r = cv2.split(img)
 (card-merge)=
 ::::{card}
 :header: merge
-:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga61f2f2bde4a0a0154b2333ea504fab1d)
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga7d7b4d6c6ee504b30a20b1680029c7b4)
 
 Creates one multi-channel array out of several single-channel ones.
 
 :::{code} python
-:caption: `merge` Example
+:caption: `merge` syntax
+cv2.merge(channels)
+:::
+
+|Parameters|Description|
+|--|--|
+|channels| tuple of channels to merge|
+
+:::{code} python
+:caption: `merge` example
 # split the image into blue, green, and red components
 b, g, r = cv.split(img)
 
@@ -158,7 +167,17 @@ Saves an image to a specified file.
 The function imwrite saves the image to the specified file. The image format is chosen based on the filename extension (see cv::imread for the list of extensions). In general, only 8-bit single-channel or 3-channel (with 'BGR' channel order) images can be saved using this function.
 
 :::{code} python
-:caption: `imwrite` Example
+:caption: `imwrite` syntax
+cv2.imwrite(filename, img)
+:::
+
+|Parameters|Description|
+|--|--|
+|filename| string; name of output file|
+|img| the image to save|
+
+:::{code} python
+:caption: `imwrite` example
 # save the image
 cv2.imwrite('output.png', img);
 :::
@@ -176,7 +195,20 @@ Resizes an image.
 The function resize resizes the image `src` down to or up to the specified size. Note that the initial `dst` type or size are not taken into account. Instead, the size and type are derived from the `src`, `dsize`, `fx`, and `fy`.
 
 :::{code} python
-:caption: `resize` Example
+:caption: `resize` syntax
+cv2.resize(src, dsize, dst, fx, fy, interpolation)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| input image|
+|dsize| output image size|
+|fx| scale factor along the horizontal axis|
+|fy| scale factor along the vertical axis|
+|interpolation| interpolation method|
+
+:::{code} python
+:caption: `resize` example
 
 # specifying a scaling factor
 img_2X = cv2.resize(img, dsize=None, fx=2, fy=2)
@@ -200,7 +232,18 @@ plt.show()
 Flips a 2D array around vertical, horizontal, or both axes. 
 
 :::{code} python
-:caption: `flip` Example
+:caption: `flip` syntax
+cv2.flip(src, flipCode)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| input image|
+|flipCode| flag to specify how to flip the image|
+
+
+:::{code} python
+:caption: `flip` example
 # flip imagine about x-axis
 img_flipped_vert = cv2.flip(img, 0)
 
@@ -223,9 +266,27 @@ Draws a line segment connecting two points.
 
 The function line draws the line segment between pt1 and pt2 points in the image. The line is clipped by the image boundaries. For non-antialiased lines with integer coordinates, the 8-connected or 4-connected Bresenham algorithm is used. Thick lines are drawn with rounding endings. Antialiased lines are drawn using Gaussian filtering.
 
+:::{code} python
+:caption: `line` syntax
+cv2.line(img, pt1, pt2, color, thickness, lineType)
+:::
+
+|Parameters|Description|
+|--|--|
+|img| Image on which we will draw the line|
+|pt1| First point (x, y) of the line segment|
+|pt2| Second point (x, y) of the line segment|
+|color| Color of the line which will be drawn|
+|thickness| Integer specifying the thickness of the line; default value is 1|
+|lineType| Type of line. Default is 8-connected line. Usually `cv2.LINE_AA` is used|
+
 :::{code} pyton
-:caption: `line` Example
-test
+:caption: `line` example
+start = (200, 100)
+stop = (400, 100)
+yellow = (0, 255, 255)
+
+cv2.line(imageLine, start, stop, yellow, thickness=5, lineType=cv2.LINE_AA)
 :::
 ::::
 
