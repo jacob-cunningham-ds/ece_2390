@@ -6,6 +6,7 @@ project:
     - title: Notes
       children:
         - file: notes/01_lecture.ipynb
+        - file: notes/02_lecture.ipynb
     - title: Homework
       children:
         - file: homework/00_hw/Homework_0.ipynb

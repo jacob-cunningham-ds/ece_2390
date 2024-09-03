@@ -581,7 +581,7 @@ dst = cv2.adaptiveThreshold(img_gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRES
 (card-bitwise_and)=
 ::::{card}
 :header: bitwise_and
-:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#gac1c383073019f57e6ec71fb8c7f0b98b)
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga60b4d04b251ba5eb1392c34425497e14)
 
 Performs a bitwise AND operation on two arrays (images).
 
@@ -610,7 +610,7 @@ result = cv2.bitwise_and(image1, image2)
 (card-bitwise_or)=
 ::::{card}
 :header: bitwise_or
-:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#gaf16f2c1ca3bb8e4d67e1cf3d3e016a80)
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#gab85523db362a4e26ff0c703793a719b4)
 
 Performs a bitwise OR operation on two arrays (images).
 
@@ -639,7 +639,7 @@ result = cv2.bitwise_or(image1, image2)
 (card-bitwise_xor)=
 ::::{card}
 :header: bitwise_xor
-:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#ga8c3fdef0525d9e769ed5bd488fc41c39)
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga84b2d8188ce506593dcc3f8cd00e8e2c)
 
 Performs a bitwise XOR operation on two arrays (images).
 
@@ -668,7 +668,7 @@ result = cv2.bitwise_xor(image1, image2)
 (card-bitwise_not)=
 ::::{card}
 :header: bitwise_not
-:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#ga7bbf1b69218de200f6ff9fecaa1efb6a)
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga0002cf8b418479f4cb49a75442baee2f)
 
 Performs a bitwise NOT operation on an array (image).
 
@@ -690,6 +690,35 @@ result = cv2.bitwise_not(image)
 :::
 ::::
 
+## erode
+
+(card-erode)=
+::::{card}
+:header: erode
+:footer: [Documentation](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#gaeb1e0c1033e3f6b891a25d0511362aeb)
+
+Performs an erosion operation on an image.
+
+The `cv2.erode` function applies erosion to an image, which reduces the boundaries of the foreground objects. Erosion is achieved by moving a structuring element (kernel) across the image and shrinking the objects based on the shape and size of the kernel. This operation is useful for removing small noise, separating objects that are close together, and reducing the size of objects.
+
+:::{code} python
+:caption: `erode` syntax
+dst = cv2.erode(src, kernel, iterations=1)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| The source image on which erosion is to be applied|
+|kernel| Structuring element used for erosion, typically created using `np.ones` or `cv2.getStructuringElement`|
+|iterations| Number of times erosion is applied. Defaults to 1|
+|dst| Output image after erosion|
+
+:::{code} python
+:caption: `erode` example
+kernel = np.ones((5, 5), np.uint8)
+eroded_image = cv2.erode(img, kernel, iterations=1)
+:::
+::::
 
 
 
