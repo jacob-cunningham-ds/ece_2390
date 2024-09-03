@@ -720,6 +720,68 @@ eroded_image = cv2.erode(img, kernel, iterations=1)
 :::
 ::::
 
+## dilate
+
+(card-dilate)=
+::::{card}
+:header: dilate
+:footer: [Documentation](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#ga4ff0f3318642c4f469d0e11f242f3b6c)
+
+Expands the boundaries of objects in a binary image.
+
+The `cv2.dilate` function applies a dilation operation to an image, which increases the boundaries of the foreground objects. Dilation is performed by placing a structuring element (kernel) over the image and expanding the white (foreground) regions based on the shape and size of the kernel. This operation is useful for filling small holes, connecting disjointed components, or increasing the size of objects in the image.
+
+:::{code} python
+:caption: `dilate` syntax
+dst = cv2.dilate(src, kernel, iterations=1)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| The source image on which dilation is to be applied|
+|kernel| Structuring element used for dilation, typically created using `np.ones` or `cv2.getStructuringElement`|
+|iterations| Number of times dilation is applied. Defaults to 1|
+|dst| Output image after dilation|
+
+:::{code} python
+:caption: `dilate` example
+kernel = np.ones((5, 5), np.uint8)
+dilated_image = cv2.dilate(img, kernel, iterations=1)
+:::
+::::
+
+## morphologyEx
+
+(card-morphologyEx)=
+::::{card}
+:header: morphologyEx
+:footer: [Documentation](https://docs.opencv.org/4.x/db/df6/tutorial_erosion_dilatation.html)
+
+Applies advanced morphological transformations to an image.
+
+The `cv2.morphologyEx` function performs various morphological operations, such as opening, closing, gradient, top hat, and black hat, on an image using a specified structuring element (kernel). These operations are combinations of basic erosions and dilations, used to refine image regions, remove noise, or detect specific shapes.
+
+:::{code} python
+:caption: `morphologyEx` syntax
+dst = cv2.morphologyEx(src, op, kernel, iterations=1)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| The source image on which the morphological operation is to be applied|
+|op| Type of morphological operation to perform (e.g., `cv2.MORPH_OPEN`, `cv2.MORPH_CLOSE`, `cv2.MORPH_GRADIENT`, etc.)|
+|kernel| Structuring element used for the operation, typically created using `np.ones` or `cv2.getStructuringElement`|
+|iterations| Number of times the operation is applied. Defaults to 1|
+|dst| Output image after applying the morphological operation|
+
+:::{code} python
+:caption: `morphologyEx` example
+kernel = np.ones((5, 5), np.uint8)
+opened_image = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations=1)
+:::
+::::
+
+
 
 
 
