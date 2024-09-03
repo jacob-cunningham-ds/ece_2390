@@ -379,6 +379,329 @@ cv2.putText(img, 'Hello World!', (200, 700), cv2.FONT_HERSHEY_PLAIN, 2.3, (0, 25
 :::
 ::::
 
+## add
+
+(card-add)=
+::::{card}
+:header: add
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga10ac1bfb180e2cfda1701d06c24fdbd6)
+
+Calculates the per-element sum of two arrays or an array and a scalar. 
+
+:::{code} python
+:caption: `add` syntax
+cv2.add(arr1, arr2)
+:::
+
+|Parameters|Description|
+|--|--|
+|arr1| First array to add|
+|arr2| Second array to add|
+
+:::{code} python
+:caption: `add` example
+# create an array the same size of the image
+mat_add = np.ones(img.shape, dtype="uint8") * 50
+
+cv2.add(img, mat_add)
+:::
+::::
+
+## subtract
+
+(card-subtract)=
+::::{card}
+:header: subtract
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#gaa0f00d98b4b5edeaeb7b8333b2de353b)
+
+Calculates the per-element difference of two arrays or an array and a scalar. 
+
+:::{code} python
+:caption: `subtract` syntax
+cv2.subtract(arr1, arr2)
+:::
+
+|Parameters|Description|
+|--|--|
+|arr1| First array to subtract|
+|arr2| Second array to subtract|
+
+:::{code} python
+:caption: `subtract` example
+# create an array the same size of the image
+mat_sub = np.ones(img.shape, dtype="uint8") * 50
+
+cv2.subtract(img, mat_sub)
+:::
+::::
+
+## multiply
+
+(card-multiply)=
+::::{card}
+:header: multiply
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga979d898a58d7f61c53003e162e7ad89f)
+
+Calculates the per-element scaled product of two arrays.
+
+:::{code} python
+:caption: `multiply` syntax
+cv2.multiply(arr1, arr2)
+:::
+
+|Parameters|Description|
+|--|--|
+|arr1| First array to multiply|
+|arr2| Second array to multiply|
+
+:::{code} python
+:caption: `subtract` example
+# create an array the same size of the image
+mat_mult = np.ones(img.shape, dtype="uint8") * 50
+
+cv2.multiply(img, mat_mult)
+:::
+::::
+
+## clip
+
+(card-clip)=
+::::{card}
+:header: clip
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.clip.html)
+
+Clip (limit) the values in an array.
+
+Given an interval, values outside the interval are clipped to the interval edges. For example, if an interval of [0, 1] is specified, values smaller than 0 become 0, and values larger than 1 become 1.
+
+:::{code} python
+:caption: `clip` syntax
+np.clip(a, amin, amax, out)
+:::
+
+|Parameters|Description|
+|--|--|
+|a| array to clip|
+|amin| lower bound clip value|
+|amax| upper bound clip value|
+|out| output to new array|
+
+:::{code} python
+:caption: `clip` example
+np.clip(img, 0, 255)
+:::
+::::
+
+## threshold
+
+(card-threshold)=
+::::{card}
+:header: threshold
+:footer: [Documentation](https://docs.opencv.org/4.x/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57)
+
+Applies a fixed-level threshold to each array element.
+
+The function applies fixed-level thresholding to a multiple-channel array. The function is typically used to get a bi-level (binary) image out of a grayscale image ( compare could be also used for this purpose) or for removing a noise, that is, filtering out pixels with too small or too large values. There are several types of thresholding supported by the function. They are determined by type parameter.
+
+:::{code} python
+:caption: `threshold` syntax
+retval, dst = cv2.threshold(src, thresh, maxval, type)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| the source image (grayscale)|
+|thresh| The threshold value|
+|maxval| The maximum value that will be assigned to the pixels exceeding the threshold|
+|type| The type of thresholding to apply|
+|retval|The threshold value used|
+|dst|The output image after thresholding|
+
+:::{code} python
+:caption: `threshold` example
+retval, img_thresh = cv2.threshold(img_gray, 50, 255, cv2.THRESH_BINARY)
+:::
+::::
+
+## adaptiveThreshold
+
+(card-adaptiveThreshold)=
+::::{card}
+:header: adaptiveThreshold
+:footer: [Documentation](https://docs.opencv.org/4.x/d7/d1b/group__imgproc__misc.html#ga72b913f352e4a1b1b397736707afcde3)
+
+Applies an adaptive threshold to an array.
+
+The function transforms a grayscale image to a binary image according to the formulae:
+
+__THRESH_BINARY__
+
+$$
+dst(x,y) = 
+\begin{cases}
+  maxValue & \text{if } src(x,y) > T(x,y) \\
+  0 & \text{otherwise}
+\end{cases}
+$$
+
+__THRESH_BINARY_INV__
+
+$$
+dst(x,y) = 
+\begin{cases}
+  0 & \text{if } src(x,y) > T(x,y) \\
+  maxValue & \text{otherwise}
+\end{cases}
+$$
+
+where $T(x,y)$ is a threshold value calculated individually for each pixel.
+
+:::{code} python
+dst = cv2.adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| the source image (grayscale)|
+|maxValue| The maximum value that will be assigned to the pixels exceeding the threshold|
+|adaptiveMethod| The method used to calculate the threshold value for the local region|
+|thresholdType| The type of thresholding to apply|
+|blockSize|The size of the neighborhood area (a square) used to calculate the threshold for each pixel.|
+|C|A constant that is subtracted from the computed mean or weighted mean to fine-tune the thresholding|
+
+:::{code} python
+:caption: `adaptiveThreshold` example
+dst = cv2.adaptiveThreshold(img_gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,11, 7)
+:::
+::::
+
+## bitwise_and
+
+(card-bitwise_and)=
+(card-bitwise_and)=
+::::{card}
+:header: bitwise_and
+:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#gac1c383073019f57e6ec71fb8c7f0b98b)
+
+Performs a bitwise AND operation on two arrays (images).
+
+The function computes the bitwise conjunction of the two input arrays (images) element-wise, with an optional mask. The output array has the same size and type as the input arrays. This operation is often used in masking operations, where the region of interest in an image is extracted using a binary mask.
+
+:::{code} python
+:caption: `bitwise_and` syntax
+dst = cv2.bitwise_and(src1, src2, mask=None)
+:::
+
+|Parameters|Description|
+|--|--|
+|src1| First input array (image)|
+|src2| Second input array (image)|
+|mask| Optional mask array. If the mask is not empty, the operation is applied only to the pixels where the mask is non-zero|
+|dst| Output array (image) that has the same size and type as the input arrays|
+
+:::{code} python
+:caption: `bitwise_and` example
+result = cv2.bitwise_and(image1, image2)
+:::
+::::
+
+## bitwise_or
+
+(card-bitwise_or)=
+::::{card}
+:header: bitwise_or
+:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#gaf16f2c1ca3bb8e4d67e1cf3d3e016a80)
+
+Performs a bitwise OR operation on two arrays (images).
+
+The function computes the bitwise disjunction of the two input arrays (images) element-wise, with an optional mask. The output array has the same size and type as the input arrays. This operation is commonly used to combine regions of interest from two images.
+
+:::{code} python
+:caption: `bitwise_or` syntax
+dst = cv2.bitwise_or(src1, src2, mask=None)
+:::
+
+|Parameters|Description|
+|--|--|
+|src1| First input array (image)|
+|src2| Second input array (image)|
+|mask| Optional mask array. If the mask is not empty, the operation is applied only to the pixels where the mask is non-zero|
+|dst| Output array (image) that has the same size and type as the input arrays|
+
+:::{code} python
+:caption: `bitwise_or` example
+result = cv2.bitwise_or(image1, image2)
+:::
+::::
+
+## bitwise_xor
+
+(card-bitwise_xor)=
+::::{card}
+:header: bitwise_xor
+:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#ga8c3fdef0525d9e769ed5bd488fc41c39)
+
+Performs a bitwise XOR operation on two arrays (images).
+
+The function computes the bitwise exclusive OR of the two input arrays (images) element-wise, with an optional mask. The output array has the same size and type as the input arrays. This operation is useful for highlighting differences between two images.
+
+:::{code} python
+:caption: `bitwise_xor` syntax
+dst = cv2.bitwise_xor(src1, src2, mask=None)
+:::
+
+|Parameters|Description|
+|--|--|
+|src1| First input array (image)|
+|src2| Second input array (image)|
+|mask| Optional mask array. If the mask is not empty, the operation is applied only to the pixels where the mask is non-zero|
+|dst| Output array (image) that has the same size and type as the input arrays|
+
+:::{code} python
+:caption: `bitwise_xor` example
+result = cv2.bitwise_xor(image1, image2)
+:::
+::::
+
+## bitwise_not
+
+(card-bitwise_not)=
+::::{card}
+:header: bitwise_not
+:footer: [Documentation](https://docs.opencv.org/4.x/d0/d86/group__core__bitwise.html#ga7bbf1b69218de200f6ff9fecaa1efb6a)
+
+Performs a bitwise NOT operation on an array (image).
+
+The function inverts every bit of an array element-wise. The output image will have its pixel values inverted, such that all 0 bits are set to 1 and all 1 bits are set to 0. This operation is commonly used to create a negative of an image.
+
+:::{code} python
+:caption: `bitwise_not` syntax
+dst = cv2.bitwise_not(src)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input array (image)|
+|dst| Output array (image) that has the same size and type as the input array|
+
+:::{code} python
+:caption: `bitwise_not` example
+result = cv2.bitwise_not(image)
+:::
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,8 +13,10 @@ project:
       children:
         - file: project/01_description.md
     - file: functions.md
+
   license: CC-BY-4.0
   open_access: true
+
   authors:
   - name: Jacob Cunningham
     affiliations:
@@ -24,10 +26,15 @@ project:
     email: jjc132@pitt.edu
     corresponding: true
     github: jacob-cunningham-ds
+
   subject: Image Processing and Computer Vision
+
   jupyter: true
+
   github: https://github.com/jacob-cunningham-ds/ece_2390
 
+  abbreviations:
+    OCR: Optical Character Recognition
 
 site:
   template: book-theme
