@@ -37,7 +37,7 @@ site:
     logo: assets/favicon_96.png
     logo_text: ECE 2390
     favicon: assets/favicon_32.png
-    outline_maxdepth: 2
+    outline_maxdepth: 1
   nav:
     - title: References
       children:
