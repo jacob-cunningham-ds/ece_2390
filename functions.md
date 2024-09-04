@@ -813,6 +813,40 @@ plt.show()
 :::
 ::::
 
+## hist
+
+(card-hist)=
+::::{card}
+:header: hist
+:footer: [Documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html)
+
+Creates a histogram to visualize the distribution of data.
+
+The `plt.hist` function in Matplotlib generates a histogram, which is a graphical representation of the distribution of numerical data. It groups data points into bins and shows the frequency of data points in each bin.
+
+:::{code} python
+:caption: `hist` syntax
+plt.hist(x, bins=None, range=None, density=False, weights=None, cumulative=False, **kwargs)
+:::
+
+|Parameters|Description|
+|--|--|
+|x| Input data to create the histogram.|
+|bins| The number of bins or intervals for grouping the data points.|
+|range| The lower and upper range of the bins.|
+|density| If `True`, the histogram is normalized to form a probability density.|
+|weights| An array of weights for the data points.|
+|cumulative| If `True`, the histogram is cumulative.|
+|**kwargs| Additional keyword arguments for customizing the histogram.|
+|Return| The values of the histogram, the bin edges, and the patches used to draw the histogram.|
+
+:::{code} python
+:caption: `hist` example
+data = np.random.randn(1000)
+plt.hist(data, bins=30, color='blue', edgecolor='black')
+plt.show()
+:::
+::::
 
 
 
