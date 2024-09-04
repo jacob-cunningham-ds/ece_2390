@@ -781,6 +781,37 @@ opened_image = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel, iterations=1)
 :::
 ::::
 
+## colorbar
+
+(card-colorbar)=
+::::{card}
+:header: colorbar
+:footer: [Documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.colorbar.html)
+
+Adds a colorbar to a plot, representing the mapping of data values to colors.
+
+The `plt.colorbar` function in Matplotlib creates a colorbar that corresponds to the colormap and intensity values of the image or plot. The colorbar provides a visual representation of the mapping between data values and colors used in the plot, which is particularly useful for interpreting the meaning of colors in an image or heatmap.
+
+:::{code} python
+:caption: `colorbar` syntax
+plt.colorbar(mappable=None, cax=None, ax=None, **kwargs)
+:::
+
+|Parameters|Description|
+|--|--|
+|mappable| The image object (e.g., returned by `plt.imshow`) to which the colorbar applies.|
+|cax| An optional axes into which the colorbar will be drawn.|
+|ax| An optional axes onto which the colorbar will be attached.|
+|**kwargs| Additional optional keyword arguments to customize the colorbar.|
+|Return| The colorbar object that has been added to the plot.|
+
+:::{code} python
+:caption: `colorbar` example
+img_display = plt.imshow(image_data, cmap='viridis')
+plt.colorbar(img_display)
+plt.show()
+:::
+::::
 
 
 
