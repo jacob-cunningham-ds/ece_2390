@@ -7,6 +7,7 @@ project:
       children:
         - file: notes/01_lecture.ipynb
         - file: notes/02_lecture.ipynb
+        - file: notes/03_lecture.ipynb
     - title: Homework
       children:
         - file: homework/00_hw/Homework_0.ipynb
@@ -45,10 +46,10 @@ site:
       children:
       - title: OpenCV
         url: https://opencv.org/
-      - title: NumPy
-        url: https://numpy.org/
       - title: Matplotlib
         url: https://matplotlib.org/
+      - title: NumPy
+        url: https://numpy.org/
   actions:
     - title: Course GitHub
       url: https://github.com/SSOE-ECE1390

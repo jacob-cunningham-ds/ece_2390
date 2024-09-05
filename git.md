@@ -66,4 +66,4 @@ C:\Users\jjcun\Documents\ece_2390>git push origin main
 C:\Users\jjcun\Documents\ece_2390>git status
 :::
 
-[^gitbook]: The [Pro Git book](#https://git-scm.com/book/en/v2) written by Scott Chacon and Ben Straub is made entirely free and an incredibly useful reference. It is suggested that you read sections 1, 2, 3, and 6 to get comfortable with the program; however, at a minimum read sections 1 and 2.
+[^gitbook]: The [Pro Git book](https://git-scm.com/book/en/v2) written by Scott Chacon and Ben Straub is made entirely free and an incredibly useful reference. It is suggested that you read sections 1, 2, 3, and 6 to get comfortable with the program; however, at a minimum read sections 1 and 2.
