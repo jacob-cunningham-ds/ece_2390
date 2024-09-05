@@ -275,6 +275,39 @@ dilated_image = cv2.dilate(img, kernel, iterations=1)
 :::
 ::::
 
+## equalizeHist
+
+(card-equalizeHist)=
+::::{card}
+:header: equalizeHist
+:footer: [Documentation](https://docs.opencv.org/4.x/d5/daf/tutorial_py_histogram_equalization.html)
+
+Equalizes the histogram of a grayscale image.
+
+The `cv2.equalizeHist` function improves the contrast of an image by spreading out the most frequent intensity values. This operation is particularly useful for images that have poor contrast due to a narrow range of intensity values. It works only on single-channel images (grayscale).
+
+:::{code} python
+:caption: `equalizeHist` syntax
+dst = cv2.equalizeHist(src)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input grayscale image|
+|dst| Output image after histogram equalization|
+
+:::{code} python
+:caption: `equalizeHist` example
+# Apply histogram equalization to a grayscale image
+equalized_img = cv2.equalizeHist(gray_img)
+
+# Display the original and equalized images
+plt.subplot(121); plt.imshow(gray_img, cmap='gray'); plt.title('Original')
+plt.subplot(122); plt.imshow(equalized_img, cmap='gray'); plt.title('Equalized')
+plt.show()
+:::
+::::
+
 ## erode
 
 (card-erode)=
