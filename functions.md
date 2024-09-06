@@ -559,6 +559,43 @@ result = cv2.multiply(image, 0.5)
 :::
 ::::
 
+## normalize
+
+(card-normalize)=
+::::{card}
+:header: normalize
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga8d3f9fda4b189e067a4a3c897a107a77)
+
+Normalizes the values of an array (image) to a specific range.
+
+The `cv2.normalize` function is used to scale the pixel values of an image or the values in an array to a specified range. This operation is useful for enhancing the contrast or ensuring that values fall within a certain range.
+
+:::{code} python
+:caption: `normalize` syntax
+dst = cv2.normalize(src, dst, alpha, beta, norm_type, dtype=None)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input array or image|
+|dst| Output array or image with normalized values|
+|alpha| Lower range boundary for normalization|
+|beta| Upper range boundary for normalization|
+|norm_type| Type of normalization (`cv2.NORM_MINMAX`, `cv2.NORM_INF`, etc.)|
+|dtype| Optional data type of the output array|
+
+:::{code} python
+:caption: `normalize` example
+# Normalize the image pixel values to the range [0, 255]
+normalized_img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
+
+# Display the original and normalized images
+plt.subplot(121); plt.imshow(img, cmap='gray'); plt.title('Original')
+plt.subplot(122); plt.imshow(normalized_img, cmap='gray'); plt.title('Normalized')
+plt.show()
+:::
+::::
+
 ## putText
 
 (card-putText)=
