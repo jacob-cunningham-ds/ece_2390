@@ -4,26 +4,30 @@ subtitle: Getting started with OpenCV
 downloads:
   - file: hw_0.ipynb
     title: hw_0.ipynb
+abstract: |
+    The purpose of this assignment is to load in an image, perform operations on the image, and save the image.
 ---
 
-## Assignment
-The purpose of this assignment is to load in an image, perform operations on the image, and save the image.
-
-## Import modules
+::::{dropdown} Modules
 :::{code} python
 import numpy as np
 import cv2
 import os
 from matplotlib import pyplot as plt
 :::
+::::
 
-## Load the image
+## Problem 1
+Load in the `apollo_11_launch.jpg` from the `Data` folder.
+
 :::{code} python
 # read in the image
 img = cv2.imread(os.path.relpath('Data/apollo_11_launch.jpg'), cv2.IMREAD_GRAYSCALE)
 :::
 
-## View the image
+## Problem 2
+Show the image using `imshow()`.
+
 :::{code} python
 # render the image
 fig, ax = plt.subplots()
@@ -36,7 +40,9 @@ plt.show()
 :align: center
 :::
 
-## Crop the image
+## Problem 3
+Crop the image.
+
 :::{code} python
 # take rows 100 through 700 and columns 400 through 800
 img_cropped = img[100:701, 400:801]
@@ -52,7 +58,9 @@ plt.show()
 :align: center
 :::
 
-## Edit the brightness
+## Problem 4
+Edit the brightness and show the result.
+
 :::{code} python
 # create a matrix of ones with the same dimensions of the image
 matrix = np.ones(img.shape, dtype="uint8")
@@ -72,7 +80,9 @@ plt.show()
 :align: center
 :::
 
-## Rotate the image
+## Problem 5
+Rotate the image using `flip`.
+
 :::{code} python
 # flip the image on the horizontal axis
 img_flipped = cv2.flip(img, 0)
@@ -88,7 +98,9 @@ plt.show()
 :align: center
 :::
 
-## Save the image
+## Problem 6
+Save the image using `imwrite()`.
+
 :::{code} python
 cv2.imwrite(os.path.relpath('Data/apollo_11_mod.jpg'), img_flipped)
 :::
