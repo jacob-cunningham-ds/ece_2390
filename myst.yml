@@ -10,7 +10,8 @@ project:
         - file: notes/03_lecture.ipynb
     - title: Homework
       children:
-        - file: homework/00_hw/Homework_0.ipynb
+        - file: homework/00_hw/hw_0.md
+        - file: homework/01_hw/hw_01.md
     - title: Project
       children:
         - file: project/01_description.md
