@@ -8,12 +8,15 @@ project:
         - file: notes/01_lecture.ipynb
         - file: notes/02_lecture.ipynb
         - file: notes/03_lecture.ipynb
+        - file: notes/04_lecture.ipynb
     - title: Homework
       children:
         - title: Homework 0
           file: homework/00_hw/hw_0.md
         - title: Homework 1
           file: homework/01_hw/hw_01.md
+        - title: Homework 2
+          file: homework/02_hw/hw_02.md
     - title: Project
       children:
         - file: project/01_description.md
@@ -37,6 +40,10 @@ project:
     OCR: Optical Character Recognition
     DVCS: Distributed Version Control System
     CLI: Command Line Interface
+    SNR: Signal-to-Noise Ratio
+    DCT: Discrete Cosine Transform
+    DFT: Discrete Fourier Transform
+    FFT: Fast Fourier Transform
 site:
   template: book-theme
   options:
