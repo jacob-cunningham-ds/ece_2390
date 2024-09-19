@@ -44,6 +44,8 @@ project:
     DCT: Discrete Cosine Transform
     DFT: Discrete Fourier Transform
     FFT: Fast Fourier Transform
+    IFT: Inverse Fourier Transform
+    IDFT: Inverse Discrete Fourier Transform
 site:
   template: book-theme
   options:
