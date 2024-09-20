@@ -915,3 +915,135 @@ np.clip(a, amin, amax, out)
 np.clip(img, 0, 255)
 :::
 ::::
+
+## linspace
+
+(card-linspace)=
+::::{card}
+:header: linspace
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html)
+
+Generate evenly spaced numbers over a specified interval.
+
+`np.linspace` returns evenly spaced numbers over a specified range. It is useful for creating numeric grids or intervals, such as time intervals or sample points for functions.
+
+:::{code} python
+:caption: `linspace` syntax
+np.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+:::
+
+|Parameters|Description|
+|---|---|
+|start|The starting value of the sequence.|
+|stop|The end value of the sequence, unless `endpoint=False`.|
+|num|Number of evenly spaced samples to generate. Defaults to 50.|
+|endpoint|If `True` (default), `stop` is the last sample. If `False`, it is excluded.|
+|retstep|If `True`, return (samples, step), where `step` is the spacing between samples.|
+|dtype|The type of the output array. If `None`, infer the data type from inputs.|
+|axis|The axis in the result along which the samples are stored. Default is 0.|
+
+:::{code} python
+:caption: `linspace` example
+# Create 5 points between 0 and 1
+np.linspace(0, 1, num=5)
+
+# Create 5 points between 0 and 1, excluding the endpoint
+np.linspace(0, 1, num=5, endpoint=False)
+:::
+::::
+
+## fft
+
+(card-fft)=
+::::{card}
+:header: fft
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.fft.html)
+
+Compute the one-dimensional discrete Fourier Transform.
+
+`np.fft.fft` computes the one-dimensional **discrete Fourier Transform (DFT)** of a real or complex-valued input signal. It transforms the input data from the time or spatial domain into the frequency domain.
+
+:::{code} python
+:caption: `fft` syntax
+np.fft.fft(a, n=None, axis=-1, norm=None)
+:::
+
+|Parameters|Description|
+|---|---|
+|a|Input array, can be complex.|
+|n|Length of the transformed axis. If `n` is smaller than the length of `a`, the input is cropped. If `n` is larger, the input is padded with zeros. Defaults to `None`, meaning no padding or cropping.|
+|axis|Axis over which to compute the FFT. Default is the last axis (-1).|
+|norm|Normalization mode (`None` or `'ortho'`). Default is `None`.|
+
+:::{code} python
+:caption: `fft` example
+# Compute the FFT of a simple sine wave
+import numpy as np
+t = np.linspace(0, 1, 500)
+signal = np.sin(2 * np.pi * 5 * t)
+fft_signal = np.fft.fft(signal)
+:::
+:::: 
+
+## fftfreq
+
+(card-fftfreq)=
+::::{card}
+:header: fftfreq
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.fftfreq.html)
+
+Return the Discrete Fourier Transform sample frequencies.
+
+`np.fft.fftfreq` computes the frequency bin centers in cycles per unit of the sample spacing for the Discrete Fourier Transform. It is often used in conjunction with `np.fft.fft` to interpret the frequency components of the FFT result.
+
+:::{code} python
+:caption: `fftfreq` syntax
+np.fft.fftfreq(n, d=1.0)
+:::
+
+|Parameters|Description|
+|---|---|
+|n|Window length (the number of samples).|
+|d|Sample spacing (inverse of the sampling rate). Defaults to 1.0.|
+
+:::{code} python
+:caption: `fftfreq` example
+# Get the frequency bins for a signal of 500 samples with a sample spacing of 1/500
+n = 500
+sample_spacing = 1.0 / 500
+frequencies = np.fft.fftfreq(n, d=sample_spacing)
+:::
+:::: 
+
+
+## ifft
+
+(card-ifft)=
+::::{card}
+:header: ifft
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.ifft.html)
+
+Compute the one-dimensional inverse discrete Fourier Transform.
+
+`np.fft.ifft` computes the **inverse discrete Fourier Transform (IDFT)**, transforming data from the frequency domain back to the time (or spatial) domain. It reconstructs the original signal from its frequency components.
+
+:::{code} python
+:caption: `ifft` syntax
+np.fft.ifft(a, n=None, axis=-1, norm=None)
+:::
+
+|Parameters|Description|
+|---|---|
+|a|Input array, can be complex.|
+|n|Length of the transformed axis. If `n` is smaller than the length of `a`, the input is cropped. If `n` is larger, the input is padded with zeros. Defaults to `None`.|
+|axis|Axis over which to compute the IFFT. Default is the last axis (-1).|
+|norm|Normalization mode (`None` or `'ortho'`). Default is `None`.|
+
+:::{code} python
+:caption: `ifft` example
+# Compute the IFFT of a signal in the frequency domain
+import numpy as np
+fft_signal = np.fft.fft(np.sin(2 * np.pi * 5 * np.linspace(0, 1, 500)))
+recovered_signal = np.fft.ifft(fft_signal)
+:::
+:::: 
