@@ -1047,3 +1047,221 @@ fft_signal = np.fft.fft(np.sin(2 * np.pi * 5 * np.linspace(0, 1, 500)))
 recovered_signal = np.fft.ifft(fft_signal)
 :::
 :::: 
+
+## meshgrid
+
+(card-meshgrid)=
+::::{card}
+:header: meshgrid
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html)
+
+Create coordinate matrices from coordinate vectors.
+
+`np.meshgrid` generates coordinate matrices (grids) from two or more coordinate vectors. It is useful for constructing 2D or 3D grids for function evaluations and visualizations.
+
+:::{code} python
+:caption: `meshgrid` syntax
+np.meshgrid(*xi, indexing='xy', sparse=False, copy=True)
+:::
+
+|Parameters|Description|
+|---|---|
+|*xi|1-D arrays representing the coordinates of the grid points.|
+|indexing|Indexing convention: 'xy' (default) for Cartesian, 'ij' for matrix indexing.|
+|sparse|If `True`, return sparse matrices for memory efficiency.|
+|copy|If `True`, return a new copy of the data.|
+
+:::{code} python
+:caption: `meshgrid` example
+# Create a 2D grid
+x = np.linspace(0, 1, 5)
+y = np.linspace(0, 1, 5)
+X, Y = np.meshgrid(x, y)
+
+# Now X and Y represent a grid of coordinates
+:::
+::::
+
+## fft2
+
+(card-fft2)=
+::::{card}
+:header: fft2
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.fft2.html)
+
+Compute the two-dimensional discrete Fourier Transform.
+
+`np.fft.fft2` computes the 2D discrete Fourier Transform (DFT) of a real or complex-valued 2D input. It transforms the data from the spatial domain to the frequency domain.
+
+:::{code} python
+:caption: `fft2` syntax
+np.fft.fft2(a, s=None, axes=(-2, -1), norm=None)
+:::
+
+|Parameters|Description|
+|---|---|
+|a|Input array, can be real or complex.|
+|s|Shape of the output (optional). If not provided, the shape of `a` is used.|
+|axes|Axes over which to compute the FFT. Default is the last two axes (-2, -1).|
+|norm|Normalization mode. Can be `None` (default) or `'ortho'` for orthonormal normalization.|
+
+:::{code} python
+:caption: `fft2` example
+# Compute the 2D FFT of a 5x5 matrix
+x = np.random.rand(5, 5)
+fft_values_2d = np.fft.fft2(x)
+
+# Compute the 2D FFT of an image
+import matplotlib.pyplot as plt
+image = plt.imread('sample_image.jpg')
+fft_image = np.fft.fft2(image)
+:::
+::::
+
+## fftshift
+
+(card-fftshift)=
+::::{card}
+:header: fftshift
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.fftshift.html)
+
+Shift the zero-frequency component to the center of the spectrum.
+
+`np.fft.fftshift` shifts the zero-frequency component to the center of the array, which is useful for visualizing frequency spectra from the Fourier Transform. It reorders the output of `np.fft.fft` or `np.fft.fft2` so that the zero frequency is in the middle.
+
+:::{code} python
+:caption: `fftshift` syntax
+np.fft.fftshift(x, axes=None)
+:::
+
+|Parameters|Description|
+|---|---|
+|x|Input array, can be real or complex.|
+|axes|Axes over which to shift. If `None`, all axes are shifted.|
+
+:::{code} python
+:caption: `fftshift` example
+# Compute the 2D FFT and shift the zero-frequency component to the center
+fft_values_2d = np.fft.fft2(np.random.rand(5, 5))
+fft_shifted = np.fft.fftshift(fft_values_2d)
+
+# Plot the shifted magnitude spectrum
+import matplotlib.pyplot as plt
+plt.imshow(np.log(np.abs(fft_shifted) + 1), cmap='gray')
+plt.title('2D FFT Shifted Magnitude Spectrum')
+plt.show()
+:::
+::::
+
+## ifft2
+
+(card-ifft2)=
+::::{card}
+:header: ifft2
+:footer: [Documentation](https://numpy.org/doc/stable/reference/generated/numpy.fft.ifft2.html)
+
+Compute the two-dimensional inverse discrete Fourier Transform.
+
+`np.fft.ifft2` computes the 2D inverse discrete Fourier Transform (IDFT). It converts a frequency-domain representation back into the spatial or time domain.
+
+:::{code} python
+:caption: `ifft2` syntax
+np.fft.ifft2(a, s=None, axes=(-2, -1), norm=None)
+:::
+
+|Parameters|Description|
+|---|---|
+|a|Input array in the frequency domain (can be complex).|
+|s|Shape of the output (optional). If not provided, the shape of `a` is used.|
+|axes|Axes over which to compute the IFFT. Default is the last two axes (-2, -1).|
+|norm|Normalization mode. Can be `None` (default) or `'ortho'` for orthonormal normalization.|
+
+:::{code} python
+:caption: `ifft2` example
+# Compute the 2D inverse FFT of a frequency-domain representation
+fft_values_2d = np.fft.fft2(np.random.rand(5, 5))
+recovered_signal_2d = np.fft.ifft2(fft_values_2d)
+
+# Plot the real part of the recovered signal
+import matplotlib.pyplot as plt
+plt.imshow(recovered_signal_2d.real, cmap='gray')
+plt.title('Recovered 2D Signal from IFFT')
+plt.show()
+:::
+::::
+
+# SciPy
+
+## dct
+
+(card-dct)=
+::::{card}
+:header: dct
+:footer: [Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.dct.html)
+
+Compute the Discrete Cosine Transform (DCT).
+
+`scipy.fftpack.dct` computes the **1D Discrete Cosine Transform (DCT)** of a real-valued input signal. It transforms the data from the spatial domain to the frequency domain.
+
+:::{code} python
+:caption: `dct` syntax
+scipy.fftpack.dct(x, type=2, n=None, axis=-1, norm=None, overwrite_x=False)
+:::
+
+|Parameters|Description|
+|---|---|
+|x|Input array, must be real.|
+|type|Type of the DCT (1, 2, 3, or 4). Default is 2.|
+|n|Length of the transform (optional). If not provided, the length of `x` is used.|
+|axis|Axis along which the DCT is computed. Default is the last axis.|
+|norm|Normalization mode. Can be `None` (default) or `'ortho'` for orthonormal normalization.|
+|overwrite_x|If `True`, the contents of `x` can be destroyed for efficiency. Default is `False`.|
+
+:::{code} python
+:caption: `dct` example
+from scipy.fftpack import dct
+import numpy as np
+
+# Create a simple 1D signal
+x = np.array([0.0, 1.0, 2.0, 3.0])
+
+# Compute the DCT (Type-II, orthonormal)
+dct_signal = dct(x, norm='ortho')
+print(dct_signal)
+:::
+::::
+
+## idct
+
+(card-idct)=
+::::{card}
+:header: idct
+:footer: [Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.idct.html)
+
+Compute the Inverse Discrete Cosine Transform (IDCT).
+
+`scipy.fftpack.idct` computes the **1D Inverse Discrete Cosine Transform (IDCT)**, transforming data from the frequency domain back to the spatial domain.
+
+:::{code} python
+:caption: `idct` syntax
+scipy.fftpack.idct(x, type=2, n=None, axis=-1, norm=None, overwrite_x=False)
+:::
+
+|Parameters|Description|
+|---|---|
+|x|Input array, must be real.|
+|type|Type of the IDCT (1, 2, 3, or 4). Default is 2.|
+|n|Length of the inverse transform (optional). If not provided, the length of `x` is used.|
+|axis|Axis along which the IDCT is computed. Default is the last axis.|
+|norm|Normalization mode. Can be `None` (default) or `'ortho'` for orthonormal normalization.|
+|overwrite_x|If `True`, the contents of `x` can be destroyed for efficiency. Default is `False`.|
+
+:::{code} python
+:caption: `idct` example
+from scipy.fftpack import idct
+
+# Compute the Inverse DCT to recover the original signal
+recovered_signal = idct(dct_signal, norm='ortho')
+print(recovered_signal)
+:::
+::::

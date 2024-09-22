@@ -46,6 +46,8 @@ project:
     FFT: Fast Fourier Transform
     IFT: Inverse Fourier Transform
     IDFT: Inverse Discrete Fourier Transform
+    IDCT: Inverse Discrete Cosine Transform
+    HWT: Hadamard-Walsh Transform
 site:
   template: book-theme
   options:
@@ -62,6 +64,8 @@ site:
         url: https://matplotlib.org/
       - title: NumPy
         url: https://numpy.org/
+      - title: SciPy
+        url: https://scipy.org/
   actions:
     - title: Course GitHub
       url: https://github.com/SSOE-ECE1390
