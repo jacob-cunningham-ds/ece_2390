@@ -1265,3 +1265,35 @@ recovered_signal = idct(dct_signal, norm='ortho')
 print(recovered_signal)
 :::
 ::::
+
+## hadamard
+
+(card-hadamard)=
+::::{card}
+:header: hadamard
+:footer: [Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.hadamard.html)
+
+Generate a Hadamard matrix.
+
+`scipy.linalg.hadamard` constructs a **Hadamard matrix**, which is a square matrix whose elements are either +1 or -1, and the rows are orthogonal.
+
+:::{code} python
+:caption: `hadamard` syntax
+scipy.linalg.hadamard(n, dtype=<class 'numpy.int32'>)
+:::
+
+|Parameters|Description|
+|---|---|
+|n|The size of the matrix. Must be a power of 2.|
+|dtype|Data type of the result. Default is `numpy.int32`.|
+
+:::{code} python
+:caption: `hadamard` example
+from scipy.linalg import hadamard
+
+# Create an 8x8 Hadamard matrix
+H = hadamard(8)
+print(H)
+:::
+::::
+

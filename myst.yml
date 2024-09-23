@@ -48,6 +48,7 @@ project:
     IDFT: Inverse Discrete Fourier Transform
     IDCT: Inverse Discrete Cosine Transform
     HWT: Hadamard-Walsh Transform
+    PSNR: Peak Signal-to-Noise Ratio
 site:
   template: book-theme
   options:
