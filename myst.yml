@@ -49,6 +49,8 @@ project:
     IDCT: Inverse Discrete Cosine Transform
     HWT: Hadamard-Walsh Transform
     PSNR: Peak Signal-to-Noise Ratio
+    CWT: Continuous Wavelet Transform
+    DWT: Discrete Wavelet Transform
 site:
   template: book-theme
   options:
