@@ -17,6 +17,8 @@ project:
           file: homework/01_hw/hw_01.md
         - title: Homework 2
           file: homework/02_hw/hw_02.md
+        - title: Homework 3
+          file: homework/03_hw/hw_03.md
     - title: Project
       children:
         - file: project/01_description.md
@@ -51,6 +53,7 @@ project:
     PSNR: Peak Signal-to-Noise Ratio
     CWT: Continuous Wavelet Transform
     DWT: Discrete Wavelet Transform
+    GMM: Gaussian Mixture Model
 site:
   template: book-theme
   options:
