@@ -181,6 +181,52 @@ result = cv2.bitwise_xor(image1, image2)
 :::
 ::::
 
+## cv2.blur
+
+(card-blur)=
+::::{card}
+:header: cv2.blur
+:footer: [Documentation](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)
+
+Applies a simple average (mean) filter to an image. This filter smooths the image by averaging pixel values in a specified kernel window.
+
+:::{code} python
+:caption: `blur` syntax
+dst = cv2.blur(src, ksize[, anchor[, borderType]])
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be grayscale or color)|
+|ksize| Size of the kernel (e.g., (5, 5) for a 5x5 kernel)|
+|anchor| Anchor point within the kernel (default is (-1,-1), which indicates the kernel center)|
+|borderType| Pixel extrapolation method (default is `cv2.BORDER_DEFAULT`)|
+
+### Border Types:
+- `cv2.BORDER_CONSTANT`: Pads with a constant value (set with `value`)
+- `cv2.BORDER_REPLICATE`: Repeats the border pixels
+- `cv2.BORDER_REFLECT`: Reflects the border elements
+- `cv2.BORDER_WRAP`: Wraps around the image (used less often)
+
+### Example:
+
+:::{code} python
+:caption: `blur` example
+import cv2
+
+# Read the image
+image = cv2.imread('image.jpg')
+
+# Apply a 5x5 mean filter
+blurred_image = cv2.blur(image, (5, 5))
+
+# Display the result
+cv2.imshow('Blurred Image', blurred_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+:::
+::::
+
 ## circle
 
 (card-circle)=
@@ -207,6 +253,49 @@ cv2.circle(img, center, radius, color, thickness, lineType)
 :::{code} python
 :caption: `circle` example
 cv2.circle(img, (900, 500), 100, (0, 0, 255), thickness=5, lineType=cv2.LINE_AA)
+:::
+::::
+
+## cv2.convertScaleAbs
+
+(card-convertScaleAbs)=
+::::{card}
+:header: cv2.convertScaleAbs
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/de8/group__core__array.html#ga4f8b7a518930d411619bb15017f3f0ff)
+
+`cv2.convertScaleAbs` is used to scale, calculate the absolute values, and convert the result to 8-bit type (`CV_8U`). It is commonly used after applying image filters or transformations (like `cv2.Sobel`) that may produce floating-point output, which needs to be converted to 8-bit for visualization.
+
+:::{code} python
+:caption: `convertScaleAbs` syntax
+dst = cv2.convertScaleAbs(src, alpha=1, beta=0)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be of any type, typically float32 or float64 for scaling and conversion)|
+|alpha| Optional scale factor (default is 1)|
+|beta| Optional added value (default is 0)|
+
+### Example:
+
+:::{code} python
+:caption: `convertScaleAbs` example
+import cv2
+import numpy as np
+
+# Read the image
+img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Apply Sobel filter to detect edges (float output)
+sobel_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+
+# Convert the result to 8-bit using convertScaleAbs
+sobel_x_8bit = cv2.convertScaleAbs(sobel_x)
+
+# Display the result
+cv2.imshow('Sobel X 8-bit', sobel_x_8bit)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 :::
 ::::
 
@@ -338,6 +427,54 @@ eroded_image = cv2.erode(img, kernel, iterations=1)
 :::
 ::::
 
+## cv2.filter2D
+
+(card-filter2D)=
+::::{card}
+:header: cv2.filter2D
+:footer: [Documentation](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#ga3cc062f1c14137a0e776e941d1bdaa6d)
+
+`cv2.filter2D` is used to apply a custom linear filter to an image. It convolves the image with a specified kernel, allowing you to create custom filters for operations like sharpening, blurring, edge detection, and more.
+
+:::{code} python
+:caption: `filter2D` syntax
+dst = cv2.filter2D(src, ddepth, kernel, anchor=(-1, -1), delta=0, borderType=cv2.BORDER_DEFAULT)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be of any type)|
+|ddepth| Desired depth of the destination image (e.g., `cv2.CV_8U`, `cv2.CV_32F`, etc.)|
+|kernel| Convolution kernel (must be a single-channel floating-point matrix)|
+|anchor| Anchor point of the kernel (default is `(-1, -1)`, which means the anchor is at the kernel center)|
+|delta| Optional value added to the result (default is 0)|
+|borderType| Pixel extrapolation method (default is `cv2.BORDER_DEFAULT`)|
+
+### Example:
+
+:::{code} python
+:caption: `filter2D` example
+import cv2
+import numpy as np
+
+# Read the image
+img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Define a custom kernel (e.g., sharpening kernel)
+kernel = np.array([[0, -1, 0], 
+                   [-1, 5, -1], 
+                   [0, -1, 0]], np.float32)
+
+# Apply filter2D to the image
+sharpened_img = cv2.filter2D(img, -1, kernel)
+
+# Display the result
+cv2.imshow('Sharpened Image', sharpened_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+:::
+::::
+
 ## flip
 
 (card-flip)=
@@ -429,6 +566,53 @@ cv2.imwrite('output.png', img);
 :::
 ::::
 
+## cv2.inpaint
+
+(card-inpaint)=
+::::{card}
+:header: cv2.inpaint
+:footer: [Documentation](https://docs.opencv.org/4.x/df/d3d/group__photo__inpaint.html)
+
+`cv2.inpaint` is used to restore parts of an image that are obscured by artifacts, noise, or other unwanted features by "inpainting" those areas. You provide a mask that marks the areas to be inpainted, and the algorithm fills in the masked regions using information from the surrounding pixels.
+
+:::{code} python
+:caption: `inpaint` syntax
+dst = cv2.inpaint(src, inpaintMask, inpaintRadius, flags)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be grayscale or color)|
+|inpaintMask| 8-bit, single-channel image, where non-zero pixels indicate the region to be inpainted|
+|inpaintRadius| Radius of a circular neighborhood of each point inpainted that is considered for the algorithm|
+|flags| Inpainting algorithm to use, can be either `cv2.INPAINT_TELEA` or `cv2.INPAINT_NS`|
+
+### Inpainting Algorithms:
+- `cv2.INPAINT_TELEA`: Fast Marching Method-based algorithm (TELEA)
+- `cv2.INPAINT_NS`: Navier-Stokes based method for inpainting
+
+### Example:
+
+:::{code} python
+:caption: `inpaint` example
+import cv2
+
+# Read the image
+image = cv2.imread('damaged_image.jpg')
+
+# Create a mask where non-zero values represent damaged regions
+mask = cv2.imread('mask.jpg', 0)  # Assuming a binary mask
+
+# Apply the inpainting algorithm (TELEA method in this example)
+inpainted_image = cv2.inpaint(image, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
+
+# Display the result
+cv2.imshow('Inpainted Image', inpainted_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+:::
+::::
+
 ## line
 
 (card-line)=
@@ -461,6 +645,37 @@ stop = (400, 100)
 yellow = (0, 255, 255) # in BGR format
 
 cv2.line(imageLine, start, stop, yellow, thickness=5, lineType=cv2.LINE_AA)
+:::
+::::
+
+## medianBlur
+
+(card-medianBlur)=
+::::{card}
+:header: medianBlur
+:footer: [Documentation](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#ga8d77eeba4167a3f62caf3dd0a71429c1)
+
+Applies a median filter to an image.
+
+The `cv2.medianBlur` function is used for reducing noise in an image, especially effective for removing "salt-and-pepper" noise. It works by replacing each pixel with the median of its surrounding pixel values, which reduces outliers without affecting the edges as much as other types of filters.
+
+:::{code} python
+:caption: `medianBlur` syntax
+dst = cv2.medianBlur(src, ksize)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be grayscale or color).|
+|ksize| Aperture linear size. Must be an odd integer greater than 1, e.g., 3, 5, 7, etc.|
+
+:::{code} python
+:caption: `medianBlur` example
+# Apply a median blur with a 5x5 kernel
+dst = cv2.medianBlur(img, 5)
+
+# Apply a median blur with a 7x7 kernel
+dst = cv2.medianBlur(img, 7)
 :::
 ::::
 
@@ -694,6 +909,59 @@ plt.show()
 img_specific = cv2.resize(img, dsize=(100, 200))
 plt.imshow(img_specific)
 plt.show()
+:::
+::::
+
+## cv2.Sobel
+
+(card-sobel)=
+::::{card}
+:header: cv2.Sobel
+:footer: [Documentation](https://docs.opencv.org/4.x/d2/d2c/tutorial_sobel_derivatives.html)
+
+`cv2.Sobel` is used to compute the first, second, or higher-order image derivatives in the x or y direction. It is commonly used for edge detection by computing the gradient of the image intensity. This can help highlight regions of high spatial frequency, such as edges.
+
+:::{code} python
+:caption: `Sobel` syntax
+dst = cv2.Sobel(src, ddepth, dx, dy, ksize, scale, delta, borderType)
+:::
+
+|Parameters|Description|
+|--|--|
+|src| Input image (can be grayscale or color)|
+|ddepth| Desired depth of the output image (e.g., `cv2.CV_64F`, `cv2.CV_32F`, `cv2.CV_8U`)|
+|dx| Order of the derivative in x direction (e.g., 1 for first derivative, 0 for no derivative in x)|
+|dy| Order of the derivative in y direction (e.g., 1 for first derivative, 0 for no derivative in y)|
+|ksize| Size of the extended Sobel kernel (must be 1, 3, 5, or 7)|
+|scale| Optional scale factor for the computed derivative values|
+|delta| Optional delta value added to the results|
+|borderType| Pixel extrapolation method used at the image border (e.g., `cv2.BORDER_DEFAULT`)|
+
+### Example:
+
+:::{code} python
+:caption: `Sobel` example
+import cv2
+import numpy as np
+
+# Read the image
+img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Apply Sobel filter to detect horizontal edges
+sobel_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+
+# Apply Sobel filter to detect vertical edges
+sobel_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+
+# Convert back to uint8 (8-bit image) for visualization
+sobel_x = np.uint8(np.abs(sobel_x))
+sobel_y = np.uint8(np.abs(sobel_y))
+
+# Display the results
+cv2.imshow('Sobel X', sobel_x)
+cv2.imshow('Sobel Y', sobel_y)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 :::
 ::::
 
@@ -1297,3 +1565,150 @@ print(H)
 :::
 ::::
 
+# scikit-learn
+
+## fit
+
+(card-fit)=
+::::{card}
+:header: `fit` method (scikit-learn)
+:footer: [Documentation](https://scikit-learn.org/stable/glossary.html#term-fit)
+
+The `fit` method is used to train machine learning models in scikit-learn by adjusting model parameters based on input data. It takes in training data and updates the internal model parameters.
+
+:::{code} python
+:caption: `fit` method syntax
+model.fit(X, y=None)
+:::
+
+|Parameters|Description|
+|--|--|
+|X| The input data used to fit the model, typically a 2D array-like structure of shape `(n_samples, n_features)`|
+|y| The target labels (optional for unsupervised learning)|
+|sample_weight| Optional weights for each sample, shape `(n_samples,)`|
+
+### Example:
+
+:::{code} python
+:caption: `fit` example
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Generate random data
+X = np.random.rand(100, 1)  # features
+y = 3 * X.squeeze() + 2  # target with a linear relation
+
+# Fit the linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Get the model parameters (intercept and slope)
+print(f"Intercept: {model.intercept_}, Slope: {model.coef_}")
+:::
+
+### Usage:
+- The `fit` method trains the model by learning patterns from the input data `X` and, in supervised cases, the corresponding target values `y`.
+- This method is called before using model-specific methods like `predict` or `score`.
+
+::::
+
+## GaussianMixture
+
+(card-gaussianmixture)=
+::::{card}
+:header: GaussianMixture
+:footer: [Documentation](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+
+`sklearn.mixture.GaussianMixture` is a clustering algorithm that models data as a mixture of several Gaussian distributions. It estimates the parameters of these distributions using the Expectation-Maximization (EM) algorithm.
+
+:::{code} python
+:caption: `GaussianMixture` syntax
+gmm = GaussianMixture(n_components=3, covariance_type='full')
+gmm.fit(X)
+:::
+
+|Parameters|Description|
+|--|--|
+|n_components| The number of mixture components (i.e., clusters)|
+|covariance_type| Type of covariance to use: 'full', 'tied', 'diag', or 'spherical'|
+|max_iter| Maximum number of iterations to run the EM algorithm (default: 100)|
+|tol| Convergence threshold (default: 1e-3)|
+|random_state| Seed for random number generation (useful for reproducibility)|
+|init_params| Method to initialize weights, means, and covariances ('kmeans' or 'random')|
+
+### Methods:
+
+|Method|Description|
+|--|--|
+|fit(X)| Fit the Gaussian mixture model to the data `X`|
+|predict(X)| Predict the cluster labels for each data point in `X`|
+|sample(n_samples)| Generate random samples from the fitted mixture model|
+|score(X)| Compute the log-likelihood of the data under the model|
+
+### Example:
+
+:::{code} python
+:caption: `GaussianMixture` example
+import numpy as np
+from sklearn.mixture import GaussianMixture
+
+# Generate random data
+X = np.random.rand(100, 2)
+
+# Fit Gaussian Mixture Model
+gmm = GaussianMixture(n_components=3, covariance_type='full')
+gmm.fit(X)
+
+# Predict cluster labels
+labels = gmm.predict(X)
+
+# Print the predicted labels
+print(labels)
+:::
+::::
+
+## predict
+
+(card-predict)=
+::::{card}
+:header: `predict` method (scikit-learn)
+:footer: [Documentation](https://scikit-learn.org/stable/glossary.html#term-predict)
+
+The `predict` method is used to make predictions using a trained model in scikit-learn. It takes input data and returns the predicted output based on the model's learned parameters.
+
+:::{code} python
+:caption: `predict` method syntax
+model.predict(X)
+:::
+
+|Parameters|Description|
+|--|--|
+|X| Input data of shape `(n_samples, n_features)`, where `n_samples` is the number of samples and `n_features` is the number of features for each sample.|
+
+### Example:
+
+:::{code} python
+:caption: `predict` example
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Generate random data
+X = np.random.rand(100, 1)  # features
+y = 3 * X.squeeze() + 2  # target with a linear relation
+
+# Fit the linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Make predictions
+X_test = np.array([[0.5], [1.0], [1.5]])
+predictions = model.predict(X_test)
+
+print("Predictions:", predictions)
+:::
+
+### Usage:
+- The `predict` method uses the fitted model to predict outputs for new input data `X`.
+- This method is typically called after training a model with the `fit` method.
+- The returned predictions depend on the type of model (e.g., regression models return continuous values, classification models return class labels).
+::::
