@@ -24,8 +24,10 @@ project:
         - file: project/01_description.md
     - file: functions.md
     - file: git.md
+
   license: CC-BY-4.0
   open_access: true
+
   authors:
   - name: Jacob Cunningham
     affiliations:
@@ -35,9 +37,11 @@ project:
     email: jjc132@pitt.edu
     corresponding: true
     github: jacob-cunningham-ds
+
   subject: Image Processing and Computer Vision
   jupyter: true
   github: https://github.com/jacob-cunningham-ds/ece_2390
+
   abbreviations:
     OCR: Optical Character Recognition
     DVCS: Distributed Version Control System
@@ -54,6 +58,7 @@ project:
     CWT: Continuous Wavelet Transform
     DWT: Discrete Wavelet Transform
     GMM: Gaussian Mixture Model
+    
 site:
   template: book-theme
   options:
@@ -61,17 +66,26 @@ site:
     logo_text: ECE 2390
     favicon: assets/favicon_32.png
     outline_maxdepth: 1
+    analytics_google: G-EH03XC6XF
+
   nav:
     - title: References
       children:
+      - title: Git
+        url: https://git-scm.com/book/en/v2
       - title: OpenCV
         url: https://opencv.org/
       - title: Matplotlib
         url: https://matplotlib.org/
       - title: NumPy
         url: https://numpy.org/
+      - title: scikit-image
+        url: https://scikit-image.org/
+      - title: scikit-learn
+        url: https://scikit-learn.org/stable/index.html
       - title: SciPy
         url: https://scipy.org/
+
   actions:
     - title: Course GitHub
       url: https://github.com/SSOE-ECE1390
